@@ -1,0 +1,26 @@
+#+TITLE: nested-dir-local.el
+#+AUTHOR: Jonathan Jin
+
+*NOTE*: This project is in experimental phase currently. Expect rough edges,
+unstable APIs, etc.
+
+=nested-dir-local.el= provides a mechanism for users to place multiple
+=.dir-locals.el= files throughout their codebase and have their values compose
+based on the current buffer's path.
+
+For instance, consider the following directory topology:
+
+#+begin_example
+foo/
+|-.dir-locals.el
+|-bar/
+|  |-.dir-locals.el
+|  |-baz/
+|     |-.dir-locals.el
+|     |-file
+#+end_example
+
+Say you open =foo/bar/baz/file= in a buffer. This package allows for the
+configurations specified in each of =foo/.dir-locals.el=,
+=foo/bar/.dir-locals.el=, and =foo/bar/baz/.dir-locals.el= to compose upon each
+other to apply to the given buffer.
